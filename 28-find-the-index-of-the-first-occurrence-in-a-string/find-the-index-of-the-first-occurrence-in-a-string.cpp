@@ -10,7 +10,7 @@ public:
             i++;
             j++;
         } else {
-            i = i - j + 1;  // Move i back to the next position in haystack
+            i=i-j+1;  // Move i back to the next position in haystack
             j = 0;         // Reset j to 0
         }
     }

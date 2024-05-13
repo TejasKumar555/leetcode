@@ -9,8 +9,7 @@ public:
 
         int n=fruits.size();
 
-        if(n==1)
-        return 1;
+       
 
         while(j<n)
         {

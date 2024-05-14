@@ -8,27 +8,34 @@ public:
         int sum=0,res=0;
         int temp=0;
 
-       for (int i = 0; i < n; i++) {
-            if (!grumpy[i]) {
-                sum += customers[i];
-                customers[i] = 0; // Marking as 0 to indicate already satisfied
+        for(int k=0;k<n;k++)
+        {
+            if(!grumpy[k])
+            {
+                sum=sum+customers[k];
+                customers[k]=0;
             }
+
         }
 
 
-        while(j < n) {
-    if (grumpy[j])
-        temp += customers[j];
-    if (j - i + 1 < minutes)
-        j++;
-    else if (j - i + 1 == minutes) {
-        res = max(res, sum + temp);
-        if (grumpy[i])
-            temp -= customers[i];
-        i++;
-        j++;
-    }
-}
+        while(j<n)
+        {
+            if(grumpy[j])
+            temp=temp+customers[j];
+            if((j-i+1)<minutes)
+            j++;
+            else if((j-i+1)==minutes)
+            {
+                res=max(res,sum+temp);
+                if(grumpy[i])
+                temp=temp-customers[i];
+
+                i++;
+                j++;
+
+            }
+        }
 
         return res;
     }

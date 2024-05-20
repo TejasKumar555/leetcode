@@ -4,20 +4,31 @@ public:
 
 
 
-       int n = nums.size();
-        int totalSum = 0;
-        int numSubsets = 1 << n;  // This is 2^n
         
-        for (int i = 0; i < numSubsets; i++) {
-            int currentXOR = 0;
-            for (int j = 0; j < n; j++) {
-                if (i & (1 << j)) {  // Check if the j-th element is in the subset
-                    currentXOR ^= nums[j];
-                }
+        int sum,ans=0;
+        int sub=1<<nums.size();
+      
+        for(int i=0;i<sub;i++)
+        {
+          
+            sum=0;
+            for(int j=0;j<nums.size();j++)
+            {
+                if(i&(1<<j))
+                sum=sum^nums[j];
+            
+                
             }
-            totalSum += currentXOR;
+
+            ans=ans+sum;
         }
+
+
+
+        return ans;
+
+
+
         
-        return totalSum;
     }
 };

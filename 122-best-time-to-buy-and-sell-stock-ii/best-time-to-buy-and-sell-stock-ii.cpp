@@ -2,7 +2,7 @@ class Solution {
 public:
     int func(int ind,int buy,vector<int>&a,vector<vector<long>>&dp)
     {
-        if(ind==a.size())
+        if(ind>=a.size())
         return 0;
 
         if(dp[ind][buy]!=-1)

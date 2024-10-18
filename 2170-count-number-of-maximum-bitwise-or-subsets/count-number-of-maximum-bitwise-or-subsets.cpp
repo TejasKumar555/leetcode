@@ -31,7 +31,7 @@ public:
             maxi |= it;
         }
 
-        vector<vector<int>>dp(nums.size()+1,vector<int>(maxi+1,-1));
+        vector<vector<int>>dp(nums.size(),vector<int>(maxi+1,-1));
 
         // Start recursion from the first element with OR = 0
         return solve(0, 0, maxi, nums,dp);

@@ -17,7 +17,7 @@ public:
         // Exclude the current element from the subset OR
         cnt += solve(i + 1, ors, maxi, nums,dp);
         
-        return cnt;
+        return dp[i][ors]=cnt;
     }
 
     // Function to count the number of subsets with maximum OR value

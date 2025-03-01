@@ -1,26 +1,35 @@
 class Solution {
 public:
-    bool isNStraightHand(vector<int>& nums, int k) {
-        if(nums.size()%k!=0) return 0;
-    map<int,int> mp;
-    for(auto it:nums){
-        mp[it]++;
+    bool isNStraightHand(vector<int>&hand, int groupSize) {
+         if (hand.size() % groupSize != 0) return false;
+    
+    map<int, int> freq;
+    for (int num : hand) {
+        freq[num]++;
     }
-    while(mp.size()){
-        int p=mp.begin()->first;
-        for(int i=0;i<k;i++){
-            if(mp[p+i]>0){
-                mp[p+i]--;
-                if(mp[p+i]==0){
-                    mp.erase(p+i);
-                }
-            } else{
-                return 0;
+    
+    priority_queue<int, vector<int>, greater<int>> minHeap;
+    for (const auto& [num, count] : freq) {
+        minHeap.push(num);
+    }
+    
+    while (!minHeap.empty()) {
+        int first = minHeap.top();
+        
+        for (int i = 0; i < groupSize; i++) {
+            int current = first + i;
+            if (freq[current] == 0) return false;
+            
+            freq[current]--;
+            if (freq[current] == 0) {
+                if (minHeap.top() != current) return false;
+                minHeap.pop();
             }
         }
     }
-    return 1;
-    }
+    
+    return true;
+}
         
     
 };

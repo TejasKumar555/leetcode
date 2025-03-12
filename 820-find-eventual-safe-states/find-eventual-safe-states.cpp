@@ -1,7 +1,6 @@
 class Solution {
 public:
     vector<int> eventualSafeNodes(vector<vector<int>>& adj) {
-
         int V=adj.size();
         vector<int> adjRev[V];
 		vector<int>indegree(V,0);
@@ -33,6 +32,5 @@ public:
 
 		sort(safeNodes.begin(), safeNodes.end());
 		return safeNodes;
-        
     }
 };

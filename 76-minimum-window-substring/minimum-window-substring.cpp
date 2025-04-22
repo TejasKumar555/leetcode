@@ -1,47 +1,36 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
+        vector<int>hash(256,0);
+        int l=0,r=0,si=-1,minlen=INT_MAX;
+        int cnt=0;
+        for(int i=0;i<t.size();i++)hash[t[i]]++;
+        while(r<s.size())
+        {
+            if(hash[s[r]]>0)
+            cnt=cnt+1;
+            hash[s[r]]--;
 
-        int n = s.size();
-        int m = t.size();
-        if(n < m ) return "";
-
-        unordered_map<char,int> mp;
-        int count = 0;
-        for(auto ch : t){
-            mp[ch]++;
-            if(mp[ch] == 1) count++;
-        }
-
-        int start = 0;
-        int i = 0 , j = 0;
-        int min_len = INT_MAX;
-
-        while(j < n){
-            if(mp.find(s[j]) != mp.end()) {
-               mp[s[j]]--;
-                if(mp[s[j]] == 0) count--; 
-            }
-
-            if(count == 0){
-                while(count == 0){
-                    if(mp.find(s[i]) != mp.end()) {
-                        mp[s[i]]++;
-                        if (mp[s[i]] == 1) count++;
-                    }
-
-                    if(j - i + 1 < min_len) {
-                        min_len = j - i + 1;
-                        start = i;
-                    }
-                    i++;
+            while(cnt==t.size())
+            {
+                if(r-l+1<minlen)
+                {
+                    minlen=r-l+1;
+                    si=l;
                 }
+
+                hash[s[l]]++;
+                if(hash[s[l]]>0)cnt=cnt-1;
+
+                l++;
+                
             }
-            j++;
+            r++;
         }
 
-        if(min_len == INT_MAX) return "";
-        return s.substr(start , min_len);
+
+
+        return si==-1?"":s.substr(si,minlen);
         
     }
 };
